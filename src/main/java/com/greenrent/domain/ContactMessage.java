@@ -31,12 +31,12 @@ public class ContactMessage implements Serializable {  /**   //bu entiyiy networ
 	private static final long serialVersionUID =1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)   //id leri generadet yapiyor
 	private Long id;
 	
 	@Size(min=1,max=50,message="Your Name '{validatedValue}' must be between  {min} and {max} chars long")
 	@NotNull(message= "Please provide your name")
-	@Column(length = 50, nullable = false)
+	@Column(length = 50, nullable = false) // db null olmamasi icin  nullable= false yapilir
 	private String name;
 	
 	

@@ -1,6 +1,7 @@
 package com.greenrent.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +23,21 @@ import lombok.AllArgsConstructor;
 
 
 @RestController                      // bu class controlldur dedik
-@RequestMapping("/contactmessage")  // mesaj ekleme cikarma icin
-@AllArgsConstructor
+@RequestMapping("/contactmessage")  // mesaj ekleme cikarma icin  path veriyoruz
+// 2.yontem @AllArgsConstructor  // ContactMessageService  buradn ulasmak icin 
 public class ContactMessageController {
 		
-	    @Autowired
-		private ContactMessageService contactMessageService;   // service  bagliyoruz
+	    @Autowired // ContactMessageService  buradn ulasmak icin 
+		private ContactMessageService contactMessageService;   // service  bagliyoruz. controlldeyken serviceyi cagiriyoruz
 		
+	    
 		@PostMapping("/visitor")                                    // kisiyiyada mesaji kayitetmek icin @PostMapping kullanilir
 		public ResponseEntity<Map<String,String>> createMessage(@Valid @RequestBody ContactMessage  contactMessage){ //giden request, gelencevap responseentitydir.createMessage olusturuyorum ve bu mesaj valid yani bizim sartlarimiza uygun olcak.@RequestBody bütün mesjlari cevaplari getircek
-		
+		//bana ResponseEntity olarak geri dönsün.                             //ContactMessage  domainden aliyoruz
+			
+			contactMessageService.createContactMessage(contactMessage);  //service git burda bitane createContactMessage servise methodu olustur. icindede contactMessagei gönderiyorum kayit icin.
+			  
+			
 			Map<String,String> map =new HashMap<>();
 			map.put("message", "Contact Message Succesfully Created");
 			map.put("status", "true");
@@ -39,11 +45,13 @@ public class ContactMessageController {
 			
 		}
 		
-		@GetMapping  //getirmemizi sagliyor.
+		@GetMapping //getirmemizi sagliyor.
 		public ResponseEntity<List<ContactMessage>> getAllContactMessage(){
-			contactMessageService.getAllContactMessage(); // yukarida messageService(MessageService den) olusturduk. Ona e git  orda ben sana bir tane method yazcagim onu cagir gel.MessageService gidiyoruz orda getAllMessage olmadigi icin olusturmaliyiz
+			contactMessageService.getAllContactMessage();  // yukarida messageService(MessageService den) olusturduk. Ona e git  orda ben sana bir tane method yazcagim onu cagir gel.MessageService gidiyoruz orda getAllMessage olmadigi icin olusturmaliyiz
 			
-			List<Message> allMessage=	messageService.getAllMessage(); //repositoryden gelen responseentiy. Bana list döndü  buna ismm verdim allMessage
+			
+			
+			List<ContactMessage> allMessage=ContactMessageService.getAllContactMessage); //repositoryden gelen responseentiy. Bana list döndü  buna ismm verdim allMessage
 //			return new ResponseEntity<>(allMessage,HttpStatus.OK);  2. yontem
 			return  ResponseEntity.ok(allMessage); // staticse . ok ile cagirabiliyoruz
 		}
