@@ -47,7 +47,8 @@ public class ContactMessageService {
 	
 	public void deleteContactMessage(Long id) throws ResourceNotFoundException{  //eger o id yi bulamassa exception firlat
 	 ContactMessage message= getContactMessage(id); //buda messageRepository baglancak deleteById(id) ile silcek
-		//geri bisey göndermicek.
+		repository.deleteById(message.getId());//geri bisey göndermicek void oldugu icin.
+		//2.yontem repository.delete(message);
 	}
 
 }

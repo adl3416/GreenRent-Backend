@@ -29,7 +29,7 @@ public class ContactMessageController {
 		
 	    @Autowired // ContactMessageService  buradn ulasmak icin 
 		private ContactMessageService contactMessageService;   // service  bagliyoruz. controlldeyken serviceyi cagiriyoruz
-		
+		 
 	    
 		@PostMapping("/visitor")                                    // kisiyiyada mesaji kayitetmek icin @PostMapping kullanilir
 		public ResponseEntity<Map<String,String>> createMessage(@Valid @RequestBody ContactMessage  contactMessage){ //giden request, gelencevap responseentitydir.createMessage olusturuyorum ve bu mesaj valid yani bizim sartlarimiza uygun olcak.@RequestBody bütün mesjlari cevaplari getircek
