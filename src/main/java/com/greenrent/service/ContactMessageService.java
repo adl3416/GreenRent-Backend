@@ -36,7 +36,7 @@ public class ContactMessageService {
 	}
 	
 	
-	public  ContactMessage getContactMessage(Long id) { //messageRepository git findById(id) getir. Bulunan mesaji return foundMessage; ile geri gönder
+	public  ContactMessage getContactMessage(Long id) throws ResourceNotFoundException { //messageRepository git findById(id) getir. Bulunan mesaji return foundMessage; ile geri gönder
 	    return  repository.findById(id).orElseThrow(()->
 	     new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,id)));
 	}
@@ -46,15 +46,18 @@ public class ContactMessageService {
 	
 	
 	public void deleteContactMessage(Long id) throws ResourceNotFoundException{  //eger o id yi bulamassa exception firlat
+		
 	 ContactMessage message= getContactMessage(id); //buda messageRepository baglancak deleteById(id) ile silcek
 		repository.deleteById(message.getId());//geri bisey göndermicek void oldugu icin.
 		//2.yontem repository.delete(message);
 	}
+
 	
 	public void updateContactMessage(Long id, ContactMessage newContactMessage) { // yeni gelen messageyi alcak. 
 		ContactMessage foundMessage=getContactMessage(id);       //önce id si gelen degiscek mesaji sistemde bulcak()
-		foundMessage.setBody(newContactMessage.getBody()); //buldugun bu mesajin setBody sini, yeni gelen mesajin getBody si ile degistir
+		
 		foundMessage.setName(newContactMessage.getName());  //
+		foundMessage.setBody(newContactMessage.getBody()); //buldugun bu mesajin setBody sini, yeni gelen mesajin getBody si ile degistir
 		foundMessage.setEmail(newContactMessage.getEmail()); 
 		foundMessage.setSubject(newContactMessage.getSubject()); //id si verilen buldugun mesajin Subject ile yeni gelen mesajin Subject ini degistir
 		repository.save(foundMessage); // messageRepository git ve yeni foundMessageyi save et.
