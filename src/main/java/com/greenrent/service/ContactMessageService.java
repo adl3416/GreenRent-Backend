@@ -31,7 +31,7 @@ public class ContactMessageService {
 	
 	
 	
-	public List<ContactMessage> getAllContactMessage(){  // ContactMessageController classindan buraya geldik getAllMessage yi olusturduk. Repositoory göndercez
+	public List<ContactMessage> getAll(){  // ContactMessageController classindan buraya geldik getAllMessage yi olusturduk. Repositoory göndercez
 		return repository.findAll();                     //repositoryy git ve findAll ile hepsi getir.List döndürcek
 	}
 	
@@ -49,6 +49,16 @@ public class ContactMessageService {
 	 ContactMessage message= getContactMessage(id); //buda messageRepository baglancak deleteById(id) ile silcek
 		repository.deleteById(message.getId());//geri bisey göndermicek void oldugu icin.
 		//2.yontem repository.delete(message);
+	}
+	
+	public void updateContactMessage(Long id, ContactMessage newContactMessage) { // yeni gelen messageyi alcak. 
+		ContactMessage foundMessage=getContactMessage(id);       //önce id si gelen degiscek mesaji sistemde bulcak()
+		foundMessage.setBody(newContactMessage.getBody()); //buldugun bu mesajin setBody sini, yeni gelen mesajin getBody si ile degistir
+		foundMessage.setName(newContactMessage.getName());  //
+		foundMessage.setEmail(newContactMessage.getEmail()); 
+		foundMessage.setSubject(newContactMessage.getSubject()); //id si verilen buldugun mesajin Subject ile yeni gelen mesajin Subject ini degistir
+		repository.save(foundMessage); // messageRepository git ve yeni foundMessageyi save et.
+													 //Buda bana bir Message döndurcegi icin 40.satira  publicin yanina  Message  olarak yaziyoruz.yazmasssak return olmaz
 	}
 
 }

@@ -24,7 +24,7 @@ import lombok.AllArgsConstructor;
 
 @RestController                      // bu class controlldur dedik
 @RequestMapping("/contactmessage")  // mesaj ekleme cikarma icin  path veriyoruz
-// 2.yontem @AllArgsConstructor  // ContactMessageService  buradn ulasmak icin 
+@AllArgsConstructor  //  2.yontem ContactMessageService  buradn ulasmak icin 
 public class ContactMessageController {
 		
 	    @Autowired // ContactMessageService  buradn ulasmak icin 
@@ -47,20 +47,22 @@ public class ContactMessageController {
 		
 		@GetMapping //getirmemizi sagliyor.
 		public ResponseEntity<List<ContactMessage>> getAllContactMessage(){
-			contactMessageService.getAllContactMessage();  // yukarida messageService(MessageService den) olusturduk. Ona e git  orda ben sana bir tane method yazcagim onu cagir gel.MessageService gidiyoruz orda getAllMessage olmadigi icin olusturmaliyiz
+			
+			//contactMessageService.getAllContactMessage();  // yukarida messageService(MessageService den) olusturduk. Ona e git  orda ben sana bir tane method yazcagim onu cagir gel.MessageService gidiyoruz orda getAllMessage olmadigi icin olusturmaliyiz
 			
 			
-			
-			List<ContactMessage> allMessage=ContactMessageService.getAllContactMessage); //repositoryden gelen responseentiy. Bana list döndü  buna ismm verdim allMessage
-//			return new ResponseEntity<>(allMessage,HttpStatus.OK);  2. yontem
-			return  ResponseEntity.ok(allMessage); // staticse . ok ile cagirabiliyoruz
+			List<ContactMessage> list =contactMessageService.getAll(); //repositoryden gelen responseentiy. Bana list döndü  
+//			
+			return  ResponseEntity.ok(list); // staticse . ok ile cagirabiliyoruz
 		}
-		
+		/*
 		  @DeleteMapping("/{id}")
 		  public ResponseEntity<Map<String,String>> deleteContactMessage(@PathVariable Long id){ //id yi alabilmek icin @PathVariable  kullaniyoruz
 		  contactMessageService.deleteContactMessage(id);  //messagecomtactService git ve deleteContatMessage(id) yaz.Hangi meseji silceginide veriyoruz (id)-->ContactMesssageService clasina gönderdim silmek icin. MesssageService eye gidiyoruz.
 		  
 		  }
+		  
+		  */
 		
 		
 }
