@@ -43,7 +43,7 @@ public class ContactMessageService {
 	
 	
 	
-	
+	/*
 	
 	public void deleteContactMessage(Long id) throws ResourceNotFoundException{  //eger o id yi bulamassa exception firlat
 		
@@ -51,7 +51,7 @@ public class ContactMessageService {
 		repository.deleteById(message.getId());//geri bisey göndermicek void oldugu icin.
 		//2.yontem repository.delete(message);
 	}
-
+*/
 	
 	public void updateContactMessage(Long id, ContactMessage newContactMessage) { // yeni gelen messageyi alcak. 
 		ContactMessage foundMessage=getContactMessage(id);       //önce id si gelen degiscek mesaji sistemde bulcak()
@@ -64,4 +64,8 @@ public class ContactMessageService {
 													 //Buda bana bir Message döndurcegi icin 40.satira  publicin yanina  Message  olarak yaziyoruz.yazmasssak return olmaz
 	}
 
+	public void deleteMessage(Long id) throws ResourceNotFoundException{  //eger o id yi bulamassa exception firlat
+		repository.deleteById(id); // buda messageRepository baglancak deleteById(id) ile silcek
+		//geri bisey göndermicek. 
+	}
 }

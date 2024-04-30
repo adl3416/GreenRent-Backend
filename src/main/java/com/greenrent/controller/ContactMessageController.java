@@ -79,7 +79,7 @@ public class ContactMessageController {
 		
 		
 		@PutMapping("/{id}")
-		public ResponseEntity<Map<String,String>> updateContactMessage(@PathVariable Long id,@Valid @RequestBody ContactMessage contactMessage ){
+		public ResponseEntity<Map<String,String>> updateContactMessage(@PathVariable("id") Long id,@Valid @RequestBody ContactMessage contactMessage ){
 			contactMessageService.updateContactMessage(id,contactMessage);
 			
 			//Kullaniciya mesaj vermek icin map kullaniyorum.Mesela basarilibirsekilde kayit oldun. "succes"vb.
@@ -94,6 +94,7 @@ public class ContactMessageController {
 		
 		
 	
+		/*
 		  @DeleteMapping("/{id}")
 		  public ResponseEntity<Map<String,String>> deleteContactMessage(@PathVariable Long id){ //id yi alabilmek icin @PathVariable  kullaniyoruz
 		  contactMessageService.deleteContactMessage(id);  //messagecomtactService git ve deleteContatMessage(id) yaz.Hangi meseji silceginide veriyoruz (id)-->ContactMesssageService clasina gönderdim silmek icin. MesssageService eye gidiyoruz.
@@ -104,7 +105,19 @@ public class ContactMessageController {
 			 return new ResponseEntity<>(map,HttpStatus.OK); 
 		  }
 		  
+		*/
 		
+		 @DeleteMapping("/{id}")
+		  public ResponseEntity<Map<String,String>> deleteMessage(@PathVariable("id") Long id){ //id yi alabilmek icin @PathVariable  kullaniyoruz
+			 contactMessageService.deleteMessage(id);  //messageService git ve deleteMessage(id) yaz.Hangi meseji silceginide veriyoruz (id)-->MesssageService clasina gönderdim silmek icin. MesssageService eye gidiyoruz.
+				
+				 
+				 //Kullaniciya mesaj vermek icin map kullaniyorum.Mesela basarilibirsekilde kayit oldun. "succes"vb.
+				 Map<String,String> map=new HashMap<>();
+				 map.put("succes", String.valueOf(true)); //dogru ise true yani silinince true yazacak
+				 map.put("id", String.valueOf(id.longValue())); // long u stringe ceviriyoruz
+				 return new ResponseEntity<>(map,HttpStatus.OK);  // burayada map i gönderiyorum. Dönüs olarak da map istiyo onuda 71. satira  public ResponseEntity<Map<String,String>>... olarak yaziyorum.
+			 }
 		
 
 
