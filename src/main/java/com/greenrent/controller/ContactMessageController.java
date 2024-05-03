@@ -94,10 +94,10 @@ public class ContactMessageController {
 		
 		
 	
-		/*
+		
 		  @DeleteMapping("/{id}")
-		  public ResponseEntity<Map<String,String>> deleteContactMessage(@PathVariable Long id){ //id yi alabilmek icin @PathVariable  kullaniyoruz
-		  contactMessageService.deleteContactMessage(id);  //messagecomtactService git ve deleteContatMessage(id) yaz.Hangi meseji silceginide veriyoruz (id)-->ContactMesssageService clasina gönderdim silmek icin. MesssageService eye gidiyoruz.
+		  public ResponseEntity<Map<String,String>> deleteContactMessage(@PathVariable("id") Long id){ //id yi alabilmek icin @PathVariable  kullaniyoruz
+		  contactMessageService.deleteMessage(id);  //messagecomtactService git ve deleteContatMessage(id) yaz.Hangi meseji silceginide veriyoruz (id)-->ContactMesssageService clasina gönderdim silmek icin. MesssageService eye gidiyoruz.
 		  
 		  Map<String,String> map=new HashMap<>();
 			 map.put("message", "Contact Message Succesfully Deleted"); 
@@ -105,7 +105,7 @@ public class ContactMessageController {
 			 return new ResponseEntity<>(map,HttpStatus.OK); 
 		  }
 		  
-		*/
+		/*
 		
 		 @DeleteMapping("/{id}")
 		  public ResponseEntity<Map<String,String>> deleteMessage(@PathVariable("id") Long id){ //id yi alabilmek icin @PathVariable  kullaniyoruz
@@ -120,7 +120,7 @@ public class ContactMessageController {
 			 }
 		
 
-
+		*/
 
 
 
