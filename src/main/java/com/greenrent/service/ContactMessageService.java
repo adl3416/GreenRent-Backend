@@ -25,7 +25,7 @@ public class ContactMessageService {
 	       //buraya void de yazabiliriz ozaman bisey döndürmez simdi ContactMessage döndurcek
 	public ContactMessage createContactMessage(ContactMessage contactMessage) { // controllerden gönderilen messageyi aliyoruz controllerin istegi ile createContactMessage olusturuyorum.                                  
 		ContactMessage msg = repository.save(contactMessage);  // messageyi Repository e gönderip veri tabanina kayit ediyoruz
-		return msg;  //ve return olarak bana bu messageyi(msg) geri gönder
+		return msg;  //ve return  olarak bana bu messageyi(msg) geri gönder
 	}
 	
 	

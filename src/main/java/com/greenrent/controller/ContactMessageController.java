@@ -79,7 +79,7 @@ public class ContactMessageController {
 		
 		
 		@PutMapping("/{id}")
-		public ResponseEntity<Map<String,String>> updateContactMessage(@PathVariable("id") Long id,@Valid @RequestBody ContactMessage contactMessage ){
+		public ResponseEntity<Map<String,String>> updateContactMessage(@PathVariable("id") Long id,@Valid @RequestBody ContactMessage contactMessage ){ //("id") yazilmali
 			contactMessageService.updateContactMessage(id,contactMessage);
 			
 			//Kullaniciya mesaj vermek icin map kullaniyorum.Mesela basarilibirsekilde kayit oldun. "succes"vb.
@@ -106,7 +106,6 @@ public class ContactMessageController {
 		  }
 		  
 		/*
-		
 		 @DeleteMapping("/{id}")
 		  public ResponseEntity<Map<String,String>> deleteMessage(@PathVariable("id") Long id){ //id yi alabilmek icin @PathVariable  kullaniyoruz
 			 contactMessageService.deleteMessage(id);  //messageService git ve deleteMessage(id) yaz.Hangi meseji silceginide veriyoruz (id)-->MesssageService clasina gönderdim silmek icin. MesssageService eye gidiyoruz.
