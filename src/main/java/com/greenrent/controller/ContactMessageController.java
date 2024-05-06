@@ -69,7 +69,6 @@ public class ContactMessageController {
 		}
 		
 		
-		
 		@GetMapping("/request")  // @RequestParam  ve  @PathVariable birbiri ile ayni isi yapiyor  sadece yazilislari farkli
 		public ResponseEntity<ContactMessage> getMessageWithRequestParam(@RequestParam ("id") Long id) {
 			ContactMessage contactMessage=	contactMessageService.getContactMessage(id);

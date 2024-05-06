@@ -31,17 +31,17 @@ public class ContactMessageService {
 	
 	
 	
-	public List<ContactMessage> getAll(){  // ContactMessageController classindan buraya geldik getAllMessage yi olusturduk. Repositoory göndercez
+	public  List<ContactMessage> getAll(){  // ContactMessageController classindan buraya geldik getAllMessage yi olusturduk. Repositoory göndercez
 		return repository.findAll();                     //repositoryy git ve findAll ile hepsi getir.List döndürcek
 	}
 	
 	
-	public  ContactMessage getContactMessage(Long id) throws ResourceNotFoundException { //messageRepository git findById(id) getir. Bulunan mesaji return foundMessage; ile geri gönder
+	public ContactMessage getContactMessage(Long id) throws ResourceNotFoundException { //messageRepository git findById(id) getir. Bulunan mesaji return foundMessage; ile geri gönder
 	    return  repository.findById(id).orElseThrow(()->
 	     new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,id)));
 	}
 	
-	
+
 	
 	/*
 	 
