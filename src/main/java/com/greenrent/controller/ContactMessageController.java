@@ -78,6 +78,7 @@ public class ContactMessageController {
 		
 		
 		@PutMapping("/{id}")
+		
 		public ResponseEntity<Map<String,String>> updateContactMessage(@PathVariable("id") Long id,@Valid @RequestBody ContactMessage contactMessage ){ //("id") yazilmali
 			contactMessageService.updateContactMessage(id,contactMessage);
 			
@@ -86,7 +87,7 @@ public class ContactMessageController {
 			Map<String,String> map=new HashMap<>();
 			 map.put("message", "Contact Message Succesfully Updated"); 
 			 map.put("status", "true"); 
-			 return new ResponseEntity<>(map,HttpStatus.OK);   // burayada map i gönderiyorum. Dönüs olarak da map istiyo onuda  public ResponseEntity<Map<String,String>>... olarak yaziyorum.
+			 return new ResponseEntity<>(map,HttpStatus.OK);  // burayada map i gönderiyorum. Dönüs olarak da map istiyo onuda  public ResponseEntity<Map<String,String>>... olarak yaziyorum.
 		 }
 		
 		
